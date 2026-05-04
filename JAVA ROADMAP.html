@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Roadmap with Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Java Roadmap</h1>
+        <div class="quiz-section">
+            <button class="take-quiz">Take Quiz</button>
+            <div class="quizzes">
+                <!-- Quiz items will be dynamically generated here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+/* Styles for the Java Roadmap and quiz functionality */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.quiz-section {
+    margin-top: 20px;
+}
+
+.take-quiz {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.take-quiz:hover {
+    background-color: #218838;
+}
+
+.quizzes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    .take-quiz {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+// JavaScript for interactive quizzes
+const quizzes = Array.from({length: 48}, (_, i) => ({id: i + 1, question: `Quiz ${i + 1}` }));
+const quizSection = document.querySelector('.quizzes');
+quizzes.forEach(quiz => {
+    const quizItem = document.createElement('div');
+    quizItem.innerHTML = `<p>${quiz.question}</p>`;
+    quizItem.classList.add('quiz-item');
+    quizSection.appendChild(quizItem);
+});
+
+document.querySelector('.take-quiz').addEventListener('click', function() {
+    alert('Starting the quiz!');
+});
+</script>
