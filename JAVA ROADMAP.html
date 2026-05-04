@@ -1,80 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Roadmap with Interactive Quiz</title>
+    <title>Java Roadmap</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Java Roadmap</h1>
-        <div class="quiz-section">
-            <button class="take-quiz">Take Quiz</button>
-            <div class="quizzes">
-                <!-- Quiz items will be dynamically generated here -->
+    </header>
+    <main>
+        <section id="topics">
+            <h2>Java Topics</h2>
+            <div class="topic-container">
+                <!-- Java topics will be dynamically inserted here -->
             </div>
-        </div>
-    </div>
+        </section>
+        <section id="quiz">
+            <h2>Quiz Section</h2>
+            <div class="quiz-container">
+                <!-- Quizzes will be dynamically inserted here -->
+            </div>
+            <button id="submit-quiz">Submit Quiz</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Java Roadmap</p>
+    </footer>
+    <script>
+        // Code for the interactive quiz, YouTube video integration, responsive design, animations, etc.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load topics and quizzes
+            loadTopics();
+            // Setup event listeners for animations and quiz submission
+            setupQuiz();
+        });
+    </script>
 </body>
 </html>
-
-<style>
-/* Styles for the Java Roadmap and quiz functionality */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-.quiz-section {
-    margin-top: 20px;
-}
-
-.take-quiz {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.take-quiz:hover {
-    background-color: #218838;
-}
-
-.quizzes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 10px;
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-    .take-quiz {
-        width: 100%;
-    }
-}
-</style>
-
-<script>
-// JavaScript for interactive quizzes
-const quizzes = Array.from({length: 48}, (_, i) => ({id: i + 1, question: `Quiz ${i + 1}` }));
-const quizSection = document.querySelector('.quizzes');
-quizzes.forEach(quiz => {
-    const quizItem = document.createElement('div');
-    quizItem.innerHTML = `<p>${quiz.question}</p>`;
-    quizItem.classList.add('quiz-item');
-    quizSection.appendChild(quizItem);
-});
-
-document.querySelector('.take-quiz').addEventListener('click', function() {
-    alert('Starting the quiz!');
-});
-</script>
