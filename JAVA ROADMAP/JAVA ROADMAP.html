@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java MasteryRoadmap</title>
+<style>
+  :root {
+    --bg-main: #0a0e27;
+    --bg-secondary: #141d3a;
+    --bg-card: #1a2847;
+    --bg-hover: #202d4d;
+    --text-primary: #ffffff;
+    --text-secondary: #a8b5d1;
+    --text-tertiary: #6b7fa8;
+    --border-color: #2d3a52;
+    --accent-primary: #00d4ff;
+    --accent-secondary: #9d4edd;
+    --accent-tertiary: #ff006e;
+    --success: #00ff88;
+    --warning: #ffb800;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+    --shadow-lg: 0 20px 48px rgba(0,0,0,0.5);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(10, 14, 39, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+  }
+
+  .nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .nav-link:hover {
+    color: var(--accent-primary);
+  }
+
+  .nav-btn {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+  }
+
+  /* HERO SECTION */
+  .hero {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 56px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  /* MAIN CONTAINER */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  /* STATS DASHBOARD */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--accent-primary);
+    background: var(--bg-hover);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+
+  .stat-card:hover::before {
+    top: -20%;
+    right: -20%;
+  }
+
+  .stat-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .stat-value {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* FOCUS SECTION */
+  .focus-section {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(157, 78, 221, 0.1));
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 60px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+  }
+
+  .focus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .focus-title {
+    font-size: 28px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .focus-controls {
+    display: flex;
+    gap: 12px;
+  }
+
+  .focus-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .focus-badge {
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid var(--accent-primary);
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    text-align: center;
+    animation: focusGlow 2s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes focusGlow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+  }
+
+  .focus-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+  }
+
+  .btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  /* SEARCH & FILTER */
+  .search-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 250px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+
+  .search-box::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .search-box:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+  }
+
+  .filter-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: white;
+  }
+
+  /* ROADMAP STAGES */
+  .roadmap-container {
+    display: grid;
+    gap: 40px;
+  }
+
+  .stage {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .stage:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px;
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.05), transparent);
+    border-left: 4px solid var(--accent-primary);
+    transition: all 0.3s ease;
+  }
+
+  .stage-header:hover {
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.1), transparent);
+  }
+
+  .stage-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+
+  .stage-info {
+    flex: 1;
+  }
+
+  .stage-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .stage-desc {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .stage-progress-bar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .progress-visual {
+    width: 120px;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 3px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+
+  .progress-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    min-width: 50px;
+    text-align: right;
+  }
+
+  .stage-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .stage-toggle.open {
+    transform: rotate(180deg);
+  }
+
+  .stage-body {
+    display: none;
+    padding: 28px;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .stage-body.open {
+    display: block;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  /* TOPIC CARDS */
+  .topic-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topic-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .topic-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .topic-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .topic-card.completed {
+    background: rgba(0, 255, 136, 0.05);
+    border-color: var(--success);
+  }
+
+  .topic-card.focused {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+
+  .topic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    padding: 6px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid var(--accent-primary);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .topic-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  .topic-card.completed .topic-name {
+    color: var(--success);
+    text-decoration: line-through;
+    opacity: 0.8;
+  }
+
+  .topic-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+
+  .topic-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .topic-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-small {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-watch {
+    background: #1a1a2e;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+  }
+
+  .btn-watch:hover {
+    background: #ff0000;
+    color: white;
+  }
+
+  .btn-complete {
+    background: var(--accent-secondary);
+    color: white;
+  }
+
+  .btn-complete:hover {
+    background: #7c1b8f;
+  }
+
+  .topic-card.completed .btn-complete {
+    background: var(--success);
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-section {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .achievement {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .achievement.unlocked {
+    border-color: var(--success);
+    background: rgba(0, 255, 136, 0.05);
+  }
+
+  .achievement:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+  }
+
+  .achievement-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    filter: grayscale(100%);
+  }
+
+  .achievement.unlocked .achievement-icon {
+    filter: grayscale(0%);
+  }
+
+  .achievement-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .quiz-section {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+  }
+
+  .quiz-intro {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .quiz-container {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .quiz-question {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .quiz-question.correct {
+    border-color: var(--success);
+    background: rgba(0, 255, 136, 0.08);
+  }
+
+  .quiz-question.incorrect {
+    border-color: var(--accent-tertiary);
+    background: rgba(255, 0, 110, 0.08);
+  }
+
+  .quiz-question h3 {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .quiz-option {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .quiz-option input {
+    margin-right: 10px;
+  }
+
+  .quiz-result {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .quiz-result strong {
+    color: var(--accent-primary);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero h1 {
+      font-size: 40px;
+    }
+    
+    .topics-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem;
+    }
+
+    .nav-links {
+      gap: 15px;
+      font-size: 12px;
+    }
+
+    .hero {
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero p {
+      font-size: 15px;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .focus-section {
+      padding: 20px;
+    }
+
+    .focus-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .focus-controls {
+      width: 100%;
+    }
+
+    .focus-badges {
+      grid-template-columns: 1fr;
+    }
+
+    .focus-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .stage-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .stage-progress-bar {
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .search-section {
+      flex-direction: column;
+    }
+
+    .search-box {
+      min-width: auto;
+    }
+
+    .achievements-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-content">
+    <div class="nav-brand">📘 Java Mastery</div>
+    <div class="nav-links">
+      <span class="nav-link" onclick="scrollToStats()">Dashboard</span>
+      <span class="nav-link" onclick="scrollToFocus()">Focus</span>
+      <span class="nav-link" onclick="scrollToRoadmap()">Roadmap</span>
+      <span class="nav-link" onclick="exportProgress()">⬇️ Export</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Master Java Development</h1>
+    <p>A comprehensive learning roadmap tracking 48 essential modules across 6 stages • Real-time analytics • Streak tracking • Focus mode</p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- STATS DASHBOARD -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-value" id="statsCompletion">0%</div>
+      <div class="stat-label">Completion</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-value" id="statsStreak">0</div>
+      <div class="stat-label">Day Streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value" id="statsCompleted">0</div>
+      <div class="stat-label">Topics Complete</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💪</div>
+      <div class="stat-value" id="statsConsistency">0%</div>
+      <div class="stat-label">Consistency</div>
+    </div>
+  </div>
+
+  <!-- FOCUS MODE -->
+  <div class="focus-section" id="focusSection">
+    <div class="focus-header">
+      <div class="focus-title">🎯 Current Focus Mode</div>
+      <div class="focus-controls">
+        <button class="btn btn-primary" onclick="setRandomFocus()">🎲 Set Random</button>
+        <button class="btn btn-secondary" onclick="resumeLearning()">▶ Resume</button>
+      </div>
+    </div>
+    <div class="focus-badges" id="focusBadges"></div>
+    <div class="focus-actions">
+      <div style="font-size: 13px; color: var(--text-secondary); display: flex; gap: 20px; width: 100%; flex-wrap: wrap;">
+        <div>🔥 Streak: <span id="focusStreak">0</span> days</div>
+        <div>💪 Consistency: <span id="focusConsistency">0</span>%</div>
+        <div>📅 Last Study: <span id="focusLastStudy">Never</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH & FILTERS -->
+  <div class="search-section">
+    <input type="text" class="search-box" id="searchInput" placeholder="Search topics..." onkeyup="filterTopics()">
+    <button class="filter-btn active" id="filterAll" onclick="setFilter('all')" data-filter="all">All</button>
+    <button class="filter-btn" id="filterIncomplete" onclick="setFilter('incomplete')" data-filter="incomplete">📖 Incomplete</button>
+    <button class="filter-btn" id="filterCompleted" onclick="setFilter('completed')" data-filter="completed">✓ Completed</button>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="roadmap-container" id="roadmapContainer"></div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="achievements-section">
+    <div class="section-title">🏆 Achievements</div>
+    <div class="achievements-grid" id="achievementsGrid"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>📚 Java Mastery Roadmap • Professional Learning Path • Built with ❤️</p>
+</footer>
+
+<script>
+const STAGES = [
+  { num: "1", label: "Fundamentals", icon: "🚀", topics: [
+    { id: "1-1", n: "Java setup & JDK", d: "Install JDK, configure PATH, run Hello World", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw" },
+    { id: "1-2", n: "Data types & variables", d: "int, double, boolean, char, String", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=4121s" },
+    { id: "1-3", n: "Operators", d: "Arithmetic, relational, logical", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=22743s" },
+    { id: "1-4", n: "Control flow", d: "if/else, switch, ternary operator", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=25240s" },
+    { id: "1-5", n: "Loops", d: "for, while, do-while", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=6465s" },
+    { id: "1-6", n: "Arrays", d: "1D & 2D arrays, traversal", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=5262s" },
+    { id: "1-7", n: "Methods", d: "Parameters, return types", v: "https://www.youtube.com/watch?v=LBqE4YOvhyc" },
+    { id: "1-8", n: "String manipulation", d: "concat, substring, equals", v: "https://www.youtube.com/watch?v=homxOi_0248" }
+  ]},
+  { num: "2", label: "Object-Oriented Programming", icon: "🎓", topics: [
+    { id: "2-1", n: "Classes & objects", d: "Fields, constructors, instantiation", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=8754s" },
+    { id: "2-2", n: "Encapsulation", d: "Access modifiers, getters & setters", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=9000s" },
+    { id: "2-3", n: "Inheritance", d: "extends, method overriding", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=10200s" },
+    { id: "2-4", n: "Polymorphism", d: "Compile-time vs runtime", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=11500s" },
+    { id: "2-5", n: "Abstraction", d: "Abstract classes & methods", v: "https://www.youtube.com/watch?v=hvetlHYunv4" },
+    { id: "2-6", n: "Interfaces", d: "implements, default methods", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=13000s" },
+    { id: "2-7", n: "Packages", d: "import, organizing code", v: "https://www.youtube.com/watch?v=LBqE4YOvhyc&t=4500s" },
+    { id: "2-8", n: "static & final", d: "Class-level members, constants", v: "https://www.youtube.com/watch?v=homxOi_0248&t=3200s" }
+  ]},
+  { num: "3", label: "Core Java APIs", icon: "⚙️", topics: [
+    { id: "3-1", n: "Exception handling", d: "try/catch/finally", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=14500s" },
+    { id: "3-2", n: "Collections framework", d: "List, Set, Map, Queue", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=16000s" },
+    { id: "3-3", n: "Generics", d: "Type parameters, wildcards", v: "https://www.youtube.com/watch?v=K1iu1kXkVoA" },
+    { id: "3-4", n: "Iterators", d: "Iterator pattern", v: "https://www.youtube.com/watch?v=Yp9v2uM7s_w" },
+    { id: "3-5", n: "Java I/O", d: "File, BufferedReader", v: "https://www.youtube.com/watch?v=Hr8mJ19vV_U" },
+    { id: "3-6", n: "Date & Time API", d: "LocalDate, LocalDateTime", v: "https://www.youtube.com/watch?v=d_fB9D-iZRE" },
+    { id: "3-7", n: "StringBuilder", d: "Efficient operations", v: "https://www.youtube.com/watch?v=O1S8W6LBeIE" },
+    { id: "3-8", n: "Wrapper classes", d: "Autoboxing/unboxing", v: "https://www.youtube.com/watch?v=fXhGOnvW6xM" }
+  ]},
+  { num: "4", label: "Modern Features", icon: "⚡", topics: [
+    { id: "4-1", n: "Lambda expressions", d: "Functional interfaces", v: "https://www.youtube.com/watch?v=tj5sLSFjV8w" },
+    { id: "4-2", n: "Stream API", d: "filter, map, reduce", v: "https://www.youtube.com/watch?v=t1-YZ6bF-g0" },
+    { id: "4-3", n: "Optional", d: "Safe null handling", v: "https://www.youtube.com/watch?v=1Xp_pX1t4mU" },
+    { id: "4-4", n: "Records", d: "Immutable data carriers", v: "https://www.youtube.com/watch?v=gJ97U06708U" },
+    { id: "4-5", n: "Method references", d: ":: syntax", v: "https://www.youtube.com/watch?v=2n1vXG_iX68" },
+    { id: "4-6", n: "Functional interfaces", d: "Predicate, Consumer, Supplier", v: "https://www.youtube.com/watch?v=tj5sLSFjV8w&t=600s" },
+    { id: "4-7", n: "Sealed classes", d: "Restrict hierarchies", v: "https://www.youtube.com/watch?v=68f_5N9v_I0" },
+    { id: "4-8", n: "var (local inference)", d: "Type inference", v: "https://www.youtube.com/watch?v=vV2C5Y8u9pU" }
+  ]},
+  { num: "5", label: "Concurrency & JVM", icon: "⚙️", topics: [
+    { id: "5-1", n: "Threads", d: "Creating & starting threads", v: "https://www.youtube.com/watch?v=L9pMAt9D8Gk" },
+    { id: "5-2", n: "Executor framework", d: "ThreadPoolExecutor", v: "https://www.youtube.com/watch?v=6oo-97WJDQU" },
+    { id: "5-3", n: "synchronized & locks", d: "ReentrantLock, volatile", v: "https://www.youtube.com/watch?v=WH5mIc-Y_8Y" },
+    { id: "5-4", n: "Concurrent collections", d: "ConcurrentHashMap", v: "https://www.youtube.com/watch?v=7_A9f2eN0aY" },
+    { id: "5-5", n: "CompletableFuture", d: "Async pipelines", v: "https://www.youtube.com/watch?v=ImtZ5yENzgE" },
+    { id: "5-6", n: "Virtual threads", d: "Project Loom (Java 21+)", v: "https://www.youtube.com/watch?v=UocZ8V_uV-A" },
+    { id: "5-7", n: "JVM internals", d: "GC, heap/stack memory", v: "https://www.youtube.com/watch?v=ZBJ0u9MaKtM" },
+    { id: "5-8", n: "Profiling & tuning", d: "JProfiler, GC flags", v: "https://www.youtube.com/watch?v=2u79I6K-KRE" }
+  ]},
+  { num: "6", label: "Professional Skills", icon: "🎯", topics: [
+    { id: "6-1", n: "Build tools", d: "Maven, Gradle setup", v: "https://www.youtube.com/watch?v=M2b_9f_1B6k" },
+    { id: "6-2", n: "Testing", d: "JUnit 5, Mockito", v: "https://www.youtube.com/watch?v=vBaA0aYe1jw&t=30000s" },
+    { id: "6-3", n: "Spring Boot", d: "REST APIs, DI", v: "https://www.youtube.com/watch?v=9SGDpanrc8U" },
+    { id: "6-4", n: "Databases & JPA", d: "Hibernate, Spring Data", v: "https://www.youtube.com/watch?v=T_e0nQO979o" },
+    { id: "6-5", n: "Design patterns", d: "Singleton, Factory", v: "https://www.youtube.com/watch?v=vNHpsC5nd_Q" },
+    { id: "6-6", n: "REST & HTTP", d: "HttpClient, WebClient", v: "https://www.youtube.com/watch?v=L7G09A7V3I8" },
+    { id: "6-7", n: "Docker", d: "Containerize Java apps", v: "https://www.youtube.com/watch?v=flI6O-jY0vI" },
+    { id: "6-8", n: "Clean code & SOLID", d: "Maintainable coding standards", v: "https://www.youtube.com/watch?v=HoA5a9n0S9U" }
+  ]}
+];
+
+const ACHIEVEMENTS = [
+  { id: "first_topic", name: "First Step", icon: "🎯", req: 1 },
+  { id: "quarter", name: "Quarter Way", icon: "🔥", req: 12 },
+  { id: "halfway", name: "Halfway There", icon: "💪", req: 24 },
+  { id: "three_quarter", name: "Almost There", icon: "⚡", req: 36 },
+  { id: "master", name: "Java Master", icon: "👑", req: 48 },
+  { id: "streak_7", name: "Week Warrior", icon: "📅", req: 7, type: "streak" },
+  { id: "streak_30", name: "Monthly Monk", icon: "📚", req: 30, type: "streak" },
+];
+
+// STATE
+let progress = JSON.parse(localStorage.getItem('java_progress')) || {};
+let currentFocus = JSON.parse(localStorage.getItem('currentFocus')) || [];
+let studyHistory = JSON.parse(localStorage.getItem('studyHistory')) || {};
+let lastTopic = localStorage.getItem('lastTopic') || null;
+let currentFilter = 'all';
+
+// INIT
+function init() {
+  updateStudyTracking();
+  updateStats();
+  renderRoadmap();
+  updateFocusDisplay();
+  renderAchievements();
+  renderQuiz();
+  highlightFocusTopics();
+}
+
+// STUDY TRACKING
+function updateStudyTracking() {
+  const today = new Date().toDateString();
+  if (!studyHistory[today]) {
+    studyHistory[today] = 0;
+  }
+  localStorage.setItem('studyHistory', JSON.stringify(studyHistory));
+
+  let streak = 0;
+  let currentDate = new Date();
+  const sortedDates = Object.keys(studyHistory).sort((a, b) => new Date(b) - new Date(a));
+  
+  for (let i = 0; i < sortedDates.length; i++) {
+    const date = new Date(sortedDates[i]);
+    const expected = new Date(currentDate);
+    expected.setDate(expected.getDate() - i);
+    if (date.toDateString() === expected.toDateString()) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  
+  return streak;
+}
+
+// STATS
+function updateStats() {
+  const total = 48;
+  const completed = Object.values(progress).filter(v => v === true).length;
+  const percentage = Math.round((completed / total) * 100);
+  const streak = updateStudyTracking();
+  const consistency = calculateConsistency();
+
+  document.getElementById('statsCompletion').innerText = percentage + '%';
+  document.getElementById('statsCompleted').innerText = completed;
+  document.getElementById('statsStreak').innerText = streak;
+  document.getElementById('statsConsistency').innerText = consistency + '%';
+
+  document.getElementById('focusStreak').innerText = streak;
+  document.getElementById('focusConsistency').innerText = consistency + '%';
+  const lastStudyDate = Object.keys(studyHistory).sort().pop();
+  document.getElementById('focusLastStudy').innerText = lastStudyDate ? new Date(lastStudyDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Never';
+}
+
+function calculateConsistency() {
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const studyDates = Object.keys(studyHistory).filter(d => new Date(d) >= thirtyDaysAgo);
+  return Math.round((studyDates.length / 30) * 100);
+}
+
+// ROADMAP
+function renderRoadmap() {
+  const container = document.getElementById('roadmapContainer');
+  container.innerHTML = STAGES.map((stage, idx) => `
+    <div class="stage">
+      <div class="stage-header" onclick="toggleStage(${idx})">
+        <div class="stage-badge">${stage.num}</div>
+        <div class="stage-info">
+          <div class="stage-title">${stage.icon} ${stage.label}</div>
+          <div class="stage-desc">${stage.topics.length} modules</div>
+        </div>
+        <div class="stage-progress-bar">
+          <div class="progress-visual">
+            <div class="progress-fill" style="width: ${calculateStageProgress(stage.topics)}%"></div>
+          </div>
+          <div class="progress-text">${getStageComplete(stage.topics)}/${stage.topics.length}</div>
+        </div>
+        <div class="stage-toggle">▼</div>
+      </div>
+      <div class="stage-body">
+        <div class="topics-grid">
+          ${stage.topics.map(topic => renderTopicCard(topic)).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTopicCard(topic) {
+  const completed = progress[topic.id];
+  const isFocused = currentFocus.includes(topic.id);
+  const shouldShow = shouldShowTopic(topic);
+  
+  if (!shouldShow) return '';
+  
+  return `
+    <div class="topic-card ${completed ? 'completed' : ''} ${isFocused ? 'focused' : ''}" 
+         id="card-${topic.id}" 
+         onmouseenter="lastTopic='${topic.id}'; localStorage.setItem('lastTopic', lastTopic)">
+      ${isFocused ? `<div class="topic-badge">🎯 In Focus</div>` : ''}
+      <div class="topic-name">${topic.n}</div>
+      <div class="topic-desc">${topic.d}</div>
+      <div class="topic-meta">
+        <span>${completed ? '✓ Completed' : '📖 Not Started'}</span>
+        <span onclick="window.open('${topic.v}', '_blank')" style="cursor: pointer; color: var(--accent-primary);">→ Video</span>
+      </div>
+      <div class="topic-actions">
+        <a href="${topic.v}" target="_blank" class="btn-small btn-watch">WATCH</a>
+        <button class="btn-small btn-complete" onclick="toggleTopic('${topic.id}')">${completed ? '✓ DONE' : 'MARK DONE'}</button>
+      </div>
+    </div>
+  `;
+}
+
+function shouldShowTopic(topic) {
+  const completed = progress[topic.id];
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const matchesSearch = topic.n.toLowerCase().includes(searchTerm) || topic.d.toLowerCase().includes(searchTerm);
+  
+  if (currentFilter === 'completed') return completed && matchesSearch;
+  if (currentFilter === 'incomplete') return !completed && matchesSearch;
+  return matchesSearch;
+}
+
+function calculateStageProgress(topics) {
+  const complete = topics.filter(t => progress[t.id]).length;
+  return (complete / topics.length) * 100;
+}
+
+function getStageComplete(topics) {
+  return topics.filter(t => progress[t.id]).length;
+}
+
+function toggleStage(idx) {
+  const stage = document.querySelectorAll('.stage')[idx];
+  stage.querySelector('.stage-body').classList.toggle('open');
+  stage.querySelector('.stage-toggle').classList.toggle('open');
+}
+
+function toggleTopic(id) {
+  progress[id] = !progress[id];
+  if (progress[id]) {
+    const today = new Date().toDateString();
+    studyHistory[today] = (studyHistory[today] || 0) + 1;
+    localStorage.setItem('studyHistory', JSON.stringify(studyHistory));
+  }
+  localStorage.setItem('java_progress', JSON.stringify(progress));
+  updateStats();
+  renderRoadmap();
+}
+
+// FOCUS MODE
+function updateFocusDisplay() {
+  const container = document.getElementById('focusBadges');
+  if (currentFocus.length === 0) {
+    container.innerHTML = '<div style="color: var(--text-tertiary); font-size: 13px; grid-column: 1/-1;">No focus topics yet. Click "Set Random" to begin!</div>';
+  } else {
+    container.innerHTML = currentFocus.map(id => {
+      const topic = getAllTopics().find(t => t.id === id);
+      return topic ? `<div class="focus-badge">${topic.n}</div>` : '';
+    }).join('');
+  }
+}
+
+function setRandomFocus() {
+  const allTopics = getAllTopics();
+  const incomplete = allTopics.filter(t => !progress[t.id]);
+  const count = Math.min(Math.floor(Math.random() * 2) + 2, 3, incomplete.length);
+  currentFocus = [];
+  for (let i = 0; i < count; i++) {
+    const idx = Math.floor(Math.random() * incomplete.length);
+    currentFocus.push(incomplete[idx].id);
+    incomplete.splice(idx, 1);
+  }
+  localStorage.setItem('currentFocus', JSON.stringify(currentFocus));
+  updateFocusDisplay();
+  renderRoadmap();
+}
+
+function resumeLearning() {
+  if (lastTopic) {
+    const card = document.getElementById(`card-${lastTopic}`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+
+function getAllTopics() {
+  return STAGES.flatMap(s => s.topics);
+}
+
+function highlightFocusTopics() {
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.style.opacity = currentFocus.length > 0 ? '0.6' : '1';
+  });
+  currentFocus.forEach(id => {
+    const card = document.getElementById(`card-${id}`);
+    if (card) card.style.opacity = '1';
+  });
+}
+
+// FILTERS
+function setFilter(filter) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  const btnId = 'filter' + filter.charAt(0).toUpperCase() + filter.slice(1).replace('incomplete', 'Incomplete').replace('completed', 'Completed');
+  const btn = document.getElementById(btnId);
+  if (btn) btn.classList.add('active');
+  renderRoadmap();
+}
+
+function filterTopics() {
+  renderRoadmap();
+}
+
+// ACHIEVEMENTS
+function renderAchievements() {
+  const container = document.getElementById('achievementsGrid');
+  const completed = Object.values(progress).filter(v => v).length;
+  const streak = updateStudyTracking();
+
+  container.innerHTML = ACHIEVEMENTS.map(ach => {
+    let unlocked = false;
+    if (ach.type === 'streak') {
+      unlocked = streak >= ach.req;
+    } else {
+      unlocked = completed >= ach.req;
+    }
+    return `
+      <div class="achievement ${unlocked ? 'unlocked' : ''}">
+        <div class="achievement-icon">${ach.icon}</div>
+        <div class="achievement-name">${ach.name}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+const QUIZ_QUESTIONS = [
+  {
+    q: 'Which Java keyword makes a variable read-only after initialization?',
+    options: ['static', 'final', 'volatile', 'transient'],
+    a: 1
+  },
+  {
+    q: 'What is the correct signature for the entry point method in a Java application?',
+    options: ['public static void main(String[] args)', 'private void start()', 'static public int main()', 'public void main()'],
+    a: 0
+  },
+  {
+    q: 'Which collection preserves the order of insertion and allows duplicate elements?',
+    options: ['HashSet', 'ArrayList', 'TreeMap', 'PriorityQueue'],
+    a: 1
+  },
+  {
+    q: 'Which exception is checked at compile-time in Java?',
+    options: ['NullPointerException', 'IOException', 'ArithmeticException', 'IllegalArgumentException'],
+    a: 1
+  },
+  {
+    q: 'What does the "extends" keyword do in Java?',
+    options: ['Implements an interface', 'Creates a new package', 'Inherits from a superclass', 'Defines a lambda expression'],
+    a: 2
+  }
+];
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = QUIZ_QUESTIONS.map((item, index) => `
+    <div class="quiz-question" id="quiz-question-${index}">
+      <h3>${index + 1}. ${item.q}</h3>
+      ${item.options.map((option, i) => `
+        <label class="quiz-option">
+          <input type="radio" name="quiz-${index}" value="${i}"> ${option}
+        </label>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+function submitQuiz() {
+  let score = 0;
+  const results = [];
+
+  QUIZ_QUESTIONS.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="quiz-${index}"]:checked`);
+    const answerIndex = selected ? Number(selected.value) : -1;
+    const correct = answerIndex === item.a;
+    const questionCard = document.getElementById(`quiz-question-${index}`);
+
+    if (questionCard) {
+      questionCard.classList.remove('correct', 'incorrect');
+      questionCard.classList.add(correct ? 'correct' : 'incorrect');
+    }
+
+    if (correct) score += 1;
+    results.push({ question: item.q, selected: answerIndex, correctAnswer: item.options[item.a], correct });
+  });
+
+  const percent = Math.round((score / QUIZ_QUESTIONS.length) * 100);
+  document.getElementById('quizResult').innerHTML = `
+    <strong>Score:</strong> ${score}/${QUIZ_QUESTIONS.length} (${percent}%)<br>
+    ${results.map(r => `
+      <div>${r.correct ? '✅' : '❌'} <strong>${r.question}</strong><br>
+      ${r.correct ? 'Correct' : `Correct answer: ${r.correctAnswer}`}</div>
+    `).join('')}
+  `;
+}
+
+function resetQuiz() {
+  document.getElementById('quizResult').innerHTML = '';
+  document.querySelectorAll('.quiz-question').forEach(card => {
+    card.classList.remove('correct', 'incorrect');
+  });
+  document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+}
+
+function scrollToStats() { document.getElementById('statsGrid').scrollIntoView({ behavior: 'smooth' }); }
+function scrollToFocus() { document.getElementById('focusSection').scrollIntoView({ behavior: 'smooth' }); }
+function scrollToRoadmap() { document.getElementById('roadmapContainer').scrollIntoView({ behavior: 'smooth' }); }
+
+function exportProgress() {
+  const data = {
+    progress,
+    currentFocus,
+    studyHistory,
+    exported: new Date().toISOString()
+  };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `java-mastery-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// INIT
+init();
+</script>
+</body>
+</html>
